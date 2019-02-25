@@ -3,7 +3,7 @@
 class CTimelapseApp
 {
     public:
-        CTimelapseApp();
+//        CTimelapseApp();
         void run();
         void loadStatusEntries();
         void refreshStatusEntries();
@@ -13,7 +13,7 @@ class CTimelapseApp
 
     private:
         SSD1306 myDisplay;
-        CStatusEntry entries[10];
+        CStatusEntry* entries[10];
         int currentEntry;
 
         void setupDisplay();

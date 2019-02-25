@@ -1,10 +1,9 @@
-struct CStatusEntry
+#include <string>
+
+class CStatusEntry
 {
     public:
-        CStatusEntry();
-        void refreshStatus();
-
-    private:
-        char *label = (char*)"BASE:";
-        char *value = (char*)"UNKNOWN";
+        virtual void refreshStatus() = 0;
+        virtual std::string getLabel() = 0;
+        virtual std::string getValue() = 0;
 };

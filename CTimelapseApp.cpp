@@ -3,10 +3,6 @@
 #include "version.h"
 #include <unistd.h>
 
-CTimelapseApp::CTimelapseApp()
-{
-}
-
 void CTimelapseApp::run()
 {
     printf("Running TimelapseApp (version %s.%s.%s)\n", VERSION_MAJOR, VERSION_MINOR, VERSION_REV);
@@ -37,6 +33,7 @@ void CTimelapseApp::setupButton()
 
 void CTimelapseApp::loadStatusEntries()
 {
+    entries = new CStatusVersion();
     printf("loadStatusEntries()\n");
 }
 
