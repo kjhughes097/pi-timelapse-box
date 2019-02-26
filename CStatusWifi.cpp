@@ -42,8 +42,11 @@ std::string CStatusWifi::getValue()
     }
     else
     {
-        id = new char(IW_ESSID_MAX_SIZE+1);
-        wreq.u.essid.pointer = id;
+        char buffer[32];
+        memset(buffer, 0, 32);
+        wreq.u.essid.pointer = buffer;
+        wreq.u.essid.length = 32;
+
         if (ioctl(sockfd,SIOCGIWESSID, &wreq) == -1) {
             return "NOT FOUND2";
         }
