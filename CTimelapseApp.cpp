@@ -1,10 +1,10 @@
+#include <unistd.h>
 #include "ssd1306.h"
 #include "CTimelapseApp.h"
 #include "CStatusVersion.h"
 #include "CStatusWifi.h"
 #include "CStatusIpAddr.h"
-#include "version.h"
-#include <unistd.h>
+#include "CStatusDisk.h"
 
 void CTimelapseApp::run()
 {
@@ -40,6 +40,7 @@ void CTimelapseApp::loadStatusEntries()
     entries.push_back( std::unique_ptr<CStatusEntry>(new CStatusVersion) );
     entries.push_back( std::unique_ptr<CStatusEntry>(new CStatusWifi) );
     entries.push_back( std::unique_ptr<CStatusEntry>(new CStatusIpAddr) );
+    entries.push_back( std::unique_ptr<CStatusEntry>(new CStatusDisk) );
 
     for(size_t i = 0; i < entries.size(); i++)
     {
