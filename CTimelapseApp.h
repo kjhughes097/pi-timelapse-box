@@ -1,4 +1,6 @@
 #include "CStatusEntry.h"
+#include <vector>
+#include <memory>
 
 class CTimelapseApp
 {
@@ -13,7 +15,7 @@ class CTimelapseApp
 
     private:
         SSD1306 myDisplay;
-        CStatusEntry* entries[10];
+        std::vector<std::unique_ptr<CStatusEntry> > entries;
         int currentEntry;
 
         void setupDisplay();

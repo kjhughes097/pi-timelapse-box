@@ -33,8 +33,11 @@ void CTimelapseApp::setupButton()
 
 void CTimelapseApp::loadStatusEntries()
 {
-    entries = new CStatusVersion();
+//    entries = new CStatusVersion();
     printf("loadStatusEntries()\n");
+    
+    entries.push_back( std_unique_ptr<CStatusEntry>(new CStatusVersion()) );
+//    base.push_back( std_unique_ptr<CStatusEntry>(new SecondDerivedClass()) );
 }
 
 void CTimelapseApp::refreshStatusEntries()
