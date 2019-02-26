@@ -1,12 +1,14 @@
 #include "ssd1306.h"
 #include "CTimelapseApp.h"
 #include "CStatusVersion.h"
+#include "CStatusWifi.h"
+#include "CStatusIpAddr.h"
 #include "version.h"
 #include <unistd.h>
 
 void CTimelapseApp::run()
 {
-    printf("Running TimelapseApp (version %s.%s.%s)\n", VERSION_MAJOR, VERSION_MINOR, VERSION_REV);
+    printf("Running TimelapseApp\n");
 
     setupDisplay();
     setupButton();
@@ -36,6 +38,8 @@ void CTimelapseApp::loadStatusEntries()
 {
     printf("loadStatusEntries()\n");
     entries.push_back( std::unique_ptr<CStatusEntry>(new CStatusVersion) );
+    entries.push_back( std::unique_ptr<CStatusEntry>(new CStatusWifi) );
+    entries.push_back( std::unique_ptr<CStatusEntry>(new CStatusIpAddr) );
 
     for(size_t i = 0; i < entries.size(); i++)
     {
@@ -54,6 +58,9 @@ void CTimelapseApp::refreshStatusEntries()
 
 void CTimelapseApp::refreshDisplay()
 {
-    printf("refreshDisplay()\n");
+        for(int i = 0; i < entries.size(); i++)
+    {
+        printf("%s: %s\n", entries[i]->getLabel().c_str(), entries[i]->getValue().c_str());
+    }
 }
 

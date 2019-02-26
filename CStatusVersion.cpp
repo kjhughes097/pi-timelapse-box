@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <string>
 #include "CStatusVersion.h"
+#include "CStatusWifi.h"
 
 void CStatusVersion::configure()
 {
@@ -9,17 +10,14 @@ void CStatusVersion::configure()
 }
 
 
-void CStatusVersion::refreshStatus()
-{
-    printf("Running TimelapseApp (version %s.%s.%s)\n", VERSION_MAJOR, VERSION_MINOR, VERSION_REV);
-}
+void CStatusVersion::refreshStatus() { }
 
 std::string CStatusVersion::getLabel()
 {
-    return "APP ";
+    return "APP  ";
 }
 
 std::string CStatusVersion::getValue()
 {
-    sprintf("V %s.%s.%s",VERSION_MAJOR, VERSION_MINOR, VERSION_REV);
+    return string_format("V%s.%s.%s",VERSION_MAJOR, VERSION_MINOR, VERSION_REV);
 }
