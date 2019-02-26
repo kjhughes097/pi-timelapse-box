@@ -1,5 +1,6 @@
 #include "ssd1306.h"
 #include "CTimelapseApp.h"
+#include "CStatusVersion.h"
 #include "version.h"
 #include <unistd.h>
 
@@ -33,16 +34,22 @@ void CTimelapseApp::setupButton()
 
 void CTimelapseApp::loadStatusEntries()
 {
-//    entries = new CStatusVersion();
     printf("loadStatusEntries()\n");
+    entries.push_back( std::unique_ptr<CStatusEntry>(new CStatusVersion) );
+
+    for(size_t i = 0; i < entries.size(); i++)
+    {
+        entries[i]->configure();
+    }
     
-    entries.push_back( std_unique_ptr<CStatusEntry>(new CStatusVersion()) );
-//    base.push_back( std_unique_ptr<CStatusEntry>(new SecondDerivedClass()) );
 }
 
 void CTimelapseApp::refreshStatusEntries()
 {
-    printf("refreshStatusEntries()\n");
+    for(int i = 0; i < entries.size(); i++)
+    {
+        entries[i]->refreshStatus();
+    }
 }
 
 void CTimelapseApp::refreshDisplay()

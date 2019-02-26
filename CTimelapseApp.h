@@ -1,6 +1,9 @@
-#include "CStatusEntry.h"
+#ifndef CTIMELAPSE_H
+#define CTIMELAPSE_H
+
 #include <vector>
 #include <memory>
+#include "CStatusEntry.h"
 
 class CTimelapseApp
 {
@@ -23,3 +26,5 @@ class CTimelapseApp
         void buttonCallback();
         void nextEntry();
 };
+
+#endif

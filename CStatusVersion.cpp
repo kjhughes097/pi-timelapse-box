@@ -1,13 +1,25 @@
 #include "version.h"
 #include <unistd.h>
-#include <stdio.h>
 #include <string>
-#include "CStatusEntry.h"
+#include "CStatusVersion.h"
 
-class CStatusVersion : public CStatusEntry 
+void CStatusVersion::configure()
 {
-    void refreshStatus()
-    {
-        printf("Running TimelapseApp (version %s.%s.%s)\n", VERSION_MAJOR, VERSION_MINOR, VERSION_REV);
-    }
-};
+    printf("CStatusVersion->configure()\n");
+}
+
+
+void CStatusVersion::refreshStatus()
+{
+    printf("Running TimelapseApp (version %s.%s.%s)\n", VERSION_MAJOR, VERSION_MINOR, VERSION_REV);
+}
+
+std::string CStatusVersion::getLabel()
+{
+    return "APP ";
+}
+
+std::string CStatusVersion::getValue()
+{
+    sprintf("V %s.%s.%s",VERSION_MAJOR, VERSION_MINOR, VERSION_REV);
+}
