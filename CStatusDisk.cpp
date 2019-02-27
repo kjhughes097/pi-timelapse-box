@@ -2,6 +2,7 @@
 #include <cstring>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/statvfs.h>
 #include "CStatusDisk.h"
 
 
@@ -20,6 +21,26 @@ std::string CStatusDisk::getLabel()
 
 std::string CStatusDisk::getValue()
 {
-
-    return "88GB of 99GB";     
+    /* Any file on the filesystem in question */
+    char *filename = (char *)"/";
+    
+    struct statvfs buf;
+    if (!statvfs(filename, &buf)) 
+    {
+        unsigned long blksize, blocks, freeblks, disk_size, used, free;
+        
+        blksize = buf.f_bsize;
+        blocks = buf.f_blocks;
+        freeblks = buf.f_bfree;
+        
+        disk_size = blocks * blksize / (1024 * 1024 * 1024);
+        free = freeblks * blksize / (1024 * 1024 * 1024);
+        used = disk_size - free / (1024 * 1024 * 1024);
+        
+        return string_format("%luGB (%luGB free)", disk_size, free);
+    }
+    else
+    {
+        return "UNKNOWN";
+    }
 }
