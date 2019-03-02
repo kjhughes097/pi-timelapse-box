@@ -17,7 +17,7 @@ class CTimelapseApp
         void longPress();
 
     private:
-        SSD1306 myDisplay;
+        SSD1306 *myDisplay;
         std::vector<std::unique_ptr<CStatusEntry> > entries;
         int currentEntry;
 
