@@ -15,7 +15,7 @@
 #include "CStatusIpAddr.h"
 
 
-#define IP_INTERFACE "enp0s31f6"
+#define IP_INTERFACE "wlan0"
 
 void CStatusIpAddr::configure()
 {
