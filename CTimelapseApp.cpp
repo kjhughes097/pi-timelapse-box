@@ -26,6 +26,7 @@ void CTimelapseApp::run()
 void CTimelapseApp::setupDisplay()
 {
     printf("setupDisplay()\n");
+    myDisplay = new SSD1306();
 	myDisplay->initDisplay();
     currentEntry = 0;
 }
@@ -65,8 +66,8 @@ void CTimelapseApp::refreshDisplay()
     for(int i = 0; i < entries.size(); i++)
     {
         printf("%s: %s\n", entries[i]->getLabel().c_str(), entries[i]->getValue().c_str());
-        std::string line = (i == currentEntry) ? ">" : " ";
-        line += entries[i]->getLabel() + entries[i]->getValue();
+        std::string line = (i == currentEntry) ? "> " : "  ";
+        line += entries[i]->getLabel() + " : " + entries[i]->getValue();
         myDisplay->textDisplay(line.c_str());
     }
 }
