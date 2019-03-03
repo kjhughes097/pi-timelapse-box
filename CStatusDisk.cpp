@@ -27,7 +27,7 @@ std::string CStatusDisk::getValue()
     struct statvfs buf;
     if (!statvfs(filename, &buf)) 
     {
-        unsigned long blksize, blocks, freeblks, disk_size, used, free;
+        double blksize, blocks, freeblks, disk_size, used, free;
         
         blksize = buf.f_bsize;
         blocks = buf.f_blocks;
@@ -37,7 +37,7 @@ std::string CStatusDisk::getValue()
         free = freeblks * blksize / (1024 * 1024 * 1024);
         used = disk_size - free / (1024 * 1024 * 1024);
         
-        return string_format("%luGB (%luGB free)", disk_size, free);
+        return string_format("%.0fGB (%.0fGB free)", disk_size, free);
     }
     else
     {
